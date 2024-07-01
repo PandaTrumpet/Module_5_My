@@ -67,7 +67,8 @@ import pino from 'pino-http';
 import cors from 'cors';
 import { env } from './utils/env.js';
 // import { get } from 'mongoose';
-import studentsRouter from '../src/routers/students.js';
+import router from './routers/index.js';
+
 const PORT = Number(env('PORT', '3000'));
 
 export const startServer = () => {
@@ -89,7 +90,7 @@ export const startServer = () => {
       message: 'Hello world!',
     });
   });
-  app.use(studentsRouter);
+  app.use(router);
   app.use('*', (req, res, next) => {
     res.status(404).json({
       message: 'Not found',
